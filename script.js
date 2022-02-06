@@ -8,10 +8,8 @@ let j = 1;
 let entradaNula;
 
 //função para ordenar array de acordo com o vencedor de cada rodada.
-function ordenarArray(array) {
-  array.sort(function (a, b) {
-      return a.jogadaAtual < b.jogadaAtual? -1: a.jogadaAtual > b.jogadaAtual? 1 : 0;
-    }).reverse();
+function ordenarArray(array) {array.sort(function (a, b) {return a.jogadaAtual < b.jogadaAtual? -1: a.jogadaAtual > b.jogadaAtual? 1 : 0;
+}).reverse();
 }
 
 console.log(`***** JOGO DOS DADOS *****\n`);
@@ -34,9 +32,7 @@ while (nJogadores < 1 || isNaN(nJogadores)) {
   console.clear();
 }
 console.clear();
-console.log(
-  `Teremos ${nJogadores} jogadores participando de ${nRodadas} rodadas! \n`
-);
+console.log(`Teremos ${nJogadores} jogadores participando de ${nRodadas} rodadas! \n`);
 
 // A parte do código a seguir é apenas para primeira rodada, que vai coletar o nome dos jogadores
 for (i = 0; i < nJogadores; i++) {console.log(`Primeira Rodada - \n`);
