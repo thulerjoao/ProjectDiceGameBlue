@@ -8,8 +8,9 @@ let j = 1;
 let entradaNula;
 
 //função para ordenar array de acordo com o vencedor de cada rodada.
-function ordenarArray(array) {array.sort(function (a, b) {return a.jogadaAtual < b.jogadaAtual? -1: a.jogadaAtual > b.jogadaAtual? 1 : 0;
-}).reverse();
+function ordenarArray(array) {
+  array.sort(function (a, b) {
+  return a.jogadaAtual < b.jogadaAtual? -1: a.jogadaAtual > b.jogadaAtual? 1 : 0;}).reverse();
 }
 
 console.log(`***** JOGO DOS DADOS *****\n`);
