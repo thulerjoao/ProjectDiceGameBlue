@@ -1,27 +1,18 @@
 var prompt = require("prompt-sync")();
 
-const jogadas = [];
+let jogadas = [];
 let jogador;
 let nRodadas = 0;
 let nJogadores;
 let j = 1;
 let entradaNula;
-let novamente = 1;
 
 //função para ordenar array de acordo com o vencedor de cada rodada.
 function ordenarArray(array) {
-  array
-    .sort(function (a, b) {
-      return a.jogadaAtual < b.jogadaAtual
-        ? -1
-        : a.jogadaAtual > b.jogadaAtual
-        ? 1
-        : 0;
-    })
-    .reverse();
+  array.sort(function (a, b) {
+      return a.jogadaAtual < b.jogadaAtual? -1: a.jogadaAtual > b.jogadaAtual? 1 : 0;
+    }).reverse();
 }
-
-while(novamente == 'sim' || novamente == 's' || novamente == 1){
 
 console.log(`***** JOGO DOS DADOS *****\n`);
 
@@ -49,8 +40,10 @@ console.log(
 
 // A parte do código a seguir é apenas para primeira rodada, que vai coletar o nome dos jogadores
 for (i = 0; i < nJogadores; i++) {console.log(`Primeira Rodada - \n`);
-  jogador = prompt(`Qual o nome do ${i + 1} jogador? `);
-  while (jogador == "") {
+  jogador = prompt(`Qual o nome do ${i + 1}º jogador? `);
+  while (jogador == ""){
+    console.clear();
+    console.log(`!!! ATENÇÃO !!!\n`);
     jogador = prompt(`Não é possível introduzir jogadores em vazio. Digite um nome: `);
     console.clear();
   }
@@ -70,7 +63,7 @@ ordenarArray(jogadas);
 if (jogadas[0].jogadaAtual == jogadas[1].jogadaAtual) {
   console.log(`A primeira jogada empatou e não tivemos um vencedor.\n`);
 } else {
-  console.log(`O jogador ${jogadas[0].nome} tirou [${jogadas[0].jogadaAtual}] e ganhou!\n`);
+  console.log(`O jogador ${jogadas[0].nome.toUpperCase()} tirou ${jogadas[0].jogadaAtual} e ganhou!\n`);
   jogadas[0].placar++;
 }
 console.log(`Confira: `);
@@ -93,7 +86,7 @@ while (j < nRodadas) {
     console.log(`A rodada empatou e não tivemos um vencedor.`);
   } else {
     console.log(
-      `O jogador ${jogadas[0].nome} tirou [${jogadas[0].jogadaAtual}] e ganhou a ${j + 1}º rodada!`);
+      `O jogador ${jogadas[0].nome.toUpperCase()} tirou ${jogadas[0].jogadaAtual} e ganhou a ${j + 1}º rodada!`);
     jogadas[0].placar++;
   }
   console.log(`Confira: `);
@@ -107,22 +100,8 @@ console.log("***** FIM DE JOGO!!! ***** \n");
 jogadas
   .sort(function (a, b) {
     return a.placar < b.placar ? -1 : a.placar > b.placar ? 1 : 0;
-  })
-  .reverse(); //Aqui foi ordenado o array de acordo com os que venceram mais rodadas
+  }).reverse(); //Aqui foi ordenado o array de acordo com os que venceram mais rodadas
 
 console.log(`Segue o placar atualizado na ordem dos vencedores: `);
 console.log(jogadas);
 console.log(`\nE O GRANDE VENCEDOR FOI ${jogadas[0].nome.toUpperCase()}!!!`);
-
-
-novamente = prompt(`\nDeseja jogar novamente? [s] ou [n]: `).toLowerCase();
-console.clear();
-while(novamente != 'sim' && novamente != 's' && novamente != 1 
-            && novamente != 'não' && novamente != 'nao'&& novamente != 'n' && novamente != 0){
-        console.clear();
-        console.log(`!!! ATENÇÃO !!! \n`);
-        novamente = prompt(`Entrada inválida. Digite [s] para recomeçar ou [n] para finalizar: `).toLowerCase();
-        console.clear();
-    }
-
-}
